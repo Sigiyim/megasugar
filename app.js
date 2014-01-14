@@ -29,7 +29,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-var connectionString = process.env.CUSTOMCONSTR_MEGASUGAR || 'mongodb://127.0.0.1/megasugar';
+var connectionString = process.env.CUSTOMCONNSTR_MEGASUGAR || 'mongodb://127.0.0.1/megasugar';
 
 Db.connect(connectionString, function(err, db) {
     app.all('*', function(req, res, next) {
