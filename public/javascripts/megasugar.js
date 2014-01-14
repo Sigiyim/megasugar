@@ -1,15 +1,21 @@
 angular.module("megasugar", [
     'ngRoute',
+    'HomeController',
+    'EntryController',
     'UserService'
 ])
-.controller("TestController", [
-    '$scope',
-    'UserService',
-    function($scope, UserService) {
-        $scope.userName = '';
-
-        UserService.getCurrent().then(function(r) {
-            $scope.userName = r.data.userName;
+.config([
+    '$routeProvider',
+    function($routeProvider) {
+        $routeProvider.when("/", {
+            controller : 'HomeController',
+            templateUrl : '/javascripts/templates/home.html'
+        }).when('/new', {
+            controller : 'EntryController',
+            templateUrl : '/javascripts/templates/entry.html'
+        })
+        .otherwise({
+            redirectTo : '/'
         });
     }
 ]);

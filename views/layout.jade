@@ -1,11 +1,15 @@
 doctype html
 html
-  head
-    title= title
+    head
+        title
+            | Blood Sugar Entry
+
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(type='text/javascript', src='/javascripts/libs/angular/angular.min.js')
     script(type='text/javascript', src='/javascripts/libs/angular/angular-route.min.js')
 
     block scripts
-  body
-    block content
+
+    body
+        block content

@@ -2,9 +2,9 @@ extends layout
 
 block scripts
     script(type='text/javascript', src='/javascripts/services/userService.js')
+    script(type='text/javascript', src='/javascripts/controllers/homeController.js')
+    script(type='text/javascript', src='/javascripts/controllers/entryController.js')
     script(type='text/javascript', src='/javascripts/megasugar.js')
 
 block content
-    div(data-ng-app='megasugar', data-ng-controller='TestController')
-        h1
-            | Blood sugar entries for {{ userName }}
+    div.main(data-ng-app='megasugar', data-ng-view='')
