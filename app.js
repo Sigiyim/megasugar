@@ -45,6 +45,7 @@ Db.connect(connectionString, function(err, db) {
     app.get('/', routes.index);
 
     app.get('/user/current', user.current);
+    app.get('/user/new', user.new);
 
     app.post('/reading/new', reading.new_post);
     app.get('/reading/list', reading.list);
