@@ -4,8 +4,7 @@
  */
 
 exports.list = function(req, res){
-    res.send(req.db==undefined);
-//    req.db.collection('users').find().toArray(function(err, docs) {
-//        res.send(docs);
-//    });
+    req.db.collection('users').find().toArray(function(err, docs) {
+        res.send('Test');
+    });
 };
