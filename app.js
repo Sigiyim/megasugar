@@ -29,11 +29,12 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-var connectionString = 'mongodb://sigiyim:roundy36904@ds035787.mongolab.com:35787/megasugar'; //process.env.CUSTOMCONNSTR_MEGASUGAR || 'mongodb://127.0.0.1/megasugar';
+var connectionString = process.env.CUSTOMCONNSTR_MEGASUGAR || 'mongodb://127.0.0.1/megasugar';
 
 Db.connect(connectionString, function(err, db) {
     app.all('*', function(req, res, next) {
         req.db = db;
+        req.env = process.env;
 
         next();
     });
