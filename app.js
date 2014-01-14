@@ -13,6 +13,8 @@ var path = require('path');
 var app = express();
 
 // all environments
+app.use(express.cookieParser());
+app.use(express.session({ secret : 'hMrtq6nzoyELXChVqCKVGyBpudZjtmpPOE5AzVzz9zYIFe0l4YovMkdoBbz0WGwKEWzwbop0xlpjS4MYlyLkK/+b2kTukGMpuiZFqbH+0x6sMmc369Q0UPhUdiE2g5y9xVZkiX4HZXG2mHwmCcSCwzoAoZsrjQJ0YcLsj1q4ecEXNGpLyeq6TLmxMxAxFabYYAqLfV5ATOQBaYrCKSROYEpgiS/lk+FMKRBcJh5S/MTx1yhOZrSCF7YucVN8h4lc3flzI8OJdw1e5jj0uCrB4jZS/bV80GXWLLhdgdFUFaxMg34semzzXHlPk3nSDSz/IE+i7xawsRmFriDW2JH0/A==' }));
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -40,7 +42,7 @@ Db.connect(connectionString, function(err, db) {
         next();
     });
     app.get('/', routes.index);
-    app.get('/users', user.list);
+    app.get('/user/current', user.current);
 
     http.createServer(app).listen(app.get('port'), function(){
         console.log('Express server listening on port ' + app.get('port'));
