@@ -1,1 +1,18 @@
-<div>Enter stuff here.</div>
+<div class="container text-center">
+    <form action="/readings/new">
+        <input type="date" class="form-control" data-ng-model="reading.date" />
+        <input type="time" class="form-control" data-ng-model="reading.time" />
+
+        <input class="form-control" type="number" placeholder="Blood Sugar" data-ng-model="reading.sugar"/>
+        <input class="form-control" type="number" placeholder="Units of Insulin Taken" data-ng-model="reading.unitsOfInsulin" />
+        <select class="form-control" data-ng-model="reading.typeOfInsulin">
+            <option value="">-- Insulin Type --</option>
+            <option value="Novalog">Novalog</option>
+            <option value="Levamir">Levamir</option>
+        </select>
+
+
+        <a class="btn btn-danger col-xs-6" href="">Cancel</a>
+        <a class="btn btn-primary col-xs-6" href="">Save</a>
+    </form>
+</div>
