@@ -31,16 +31,16 @@ if ('development' == app.get('env')) {
 
 var connectionString = process.env.CUSTOMCONNSTR_MEGASUGAR || 'mongodb://127.0.0.1/megasugar';
 
-Db.connect(connectionString, function(err, db) {
-    app.all('*', function(req, res, next) {
-        req.db = db;
-        req.env = process.env;
+app.all('*', function(req, res, next) {
+    req.db = db;
+    req.env = process.env;
 
-        next();
-    });
-    app.get('/', routes.index);
-    app.get('/users', user.list);
+    next();
 });
+app.get('/', routes.index);
+app.get('/users', user.list);
+//Db.connect(connectionString, function(err, db) {
+//});
 
 http.createServer(app).listen(app.get('port'), function(){
     console.log('Express server listening on port ' + app.get('port'));
