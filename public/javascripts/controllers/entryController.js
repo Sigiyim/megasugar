@@ -2,7 +2,9 @@ angular.module('EntryController', [])
 .controller('EntryController', [
     '$scope',
     '$filter',
-    function($scope, $filter) {
+    '$http',
+    '$window',
+    function($scope, $filter, $http, $window) {
         $scope.reading = {};
         var dateFilter = $filter('date');
 
@@ -10,6 +12,16 @@ angular.module('EntryController', [])
         $scope.reading.time = dateFilter(new Date(), 'HH:mm');
         $scope.reading.sugar = 0;
         $scope.reading.unitsOfInsulin = 0;
-//        $scope.reading.typeOfInsulin = '';
+        $scope.reading.typeOfInsulin = '';
+
+        $scope.save = function() {
+            var p = $http.post('/reading/new', $scope.reading);
+
+            p.then(function(r) {
+                console.log(r.data);
+
+                $window.history.back();
+            });
+        }
     }
 ]);

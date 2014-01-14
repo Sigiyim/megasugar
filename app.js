@@ -7,6 +7,7 @@ var Db = require('mongodb').Db;
 var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
+var reading = require('./routes/reading');
 var http = require('http');
 var path = require('path');
 
@@ -42,7 +43,11 @@ Db.connect(connectionString, function(err, db) {
         next();
     });
     app.get('/', routes.index);
+
     app.get('/user/current', user.current);
+
+    app.post('/reading/new', reading.new_post);
+    app.get('/reading/list', reading.list);
 
     http.createServer(app).listen(app.get('port'), function(){
         console.log('Express server listening on port ' + app.get('port'));
