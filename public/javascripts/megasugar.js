@@ -1,7 +1,15 @@
-angular.module("megasugar", ['ngRoute'])
+angular.module("megasugar", [
+    'ngRoute',
+    'UserService'
+])
 .controller("TestController", [
     '$scope',
-    function($scope) {
-        $scope.text = 'Test';
+    'UserService',
+    function($scope, UserService) {
+        $scope.userName = '';
+
+        UserService.getCurrent().then(function(r) {
+            $scope.userName = r.data.userName;
+        });
     }
 ]);
