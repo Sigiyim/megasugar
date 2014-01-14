@@ -1,7 +1,9 @@
 extends layout
 
+block scripts
+    script(type='text/javascript', src='/javascripts/megasugar.js')
+
 block content
-  h1
-      | MegaSugar
-  div
-      | Future site of blood sugar entry application.
+    div(data-ng-app='megasugar', data-ng-controller='TestController')
+        h1
+            | {{ text }}

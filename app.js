@@ -3,6 +3,7 @@
  * Module dependencies.
  */
 
+var Db = require('mongodb').Db;
 var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
@@ -27,6 +28,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
+
+var connectionString = process.env.CUSTOMCONSTTR_MEGASUGAR || 'mongodb://127.0.0.1/megasugar';
+
+Db.connect(connectionString, function(err, db) {
+    app.all('*', function(req, res, next) {
+        req.db = db;
+
+        next();
+    });
+});
+
 
 app.get('/', routes.index);
 app.get('/users', user.list);
