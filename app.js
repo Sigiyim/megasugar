@@ -32,7 +32,7 @@ if ('development' == app.get('env')) {
 var connectionString = process.env.CUSTOMCONNSTR_MEGASUGAR || 'mongodb://127.0.0.1/megasugar';
 
 app.all('*', function(req, res, next) {
-    req.db = db;
+//    req.db = db;
     req.env = process.env;
 
     next();
